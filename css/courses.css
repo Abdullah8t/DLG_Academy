@@ -1,0 +1,208 @@
+/* =========================
+   CodeMaster Academy
+   Course Page Styles
+========================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    background:#f5f7fa;
+    color:#333;
+}
+
+/* Header */
+
+.course-header{
+    background:#0f172a;
+    color:#fff;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:20px 8%;
+    position:sticky;
+    top:0;
+    z-index:100;
+}
+
+.course-header h2{
+    font-size:28px;
+}
+
+.progress{
+    background:#1e293b;
+    padding:10px 18px;
+    border-radius:8px;
+}
+
+/* Layout */
+
+.course-layout{
+    display:grid;
+    grid-template-columns:300px 1fr;
+    min-height:calc(100vh - 80px);
+}
+
+/* Sidebar */
+
+.lessons{
+    background:#ffffff;
+    padding:30px;
+    border-right:1px solid #ddd;
+    position:sticky;
+    top:80px;
+    height:calc(100vh - 80px);
+    overflow-y:auto;
+}
+
+.lessons h3{
+    margin-bottom:25px;
+    color:#2563eb;
+}
+
+.lessons ul{
+    list-style:none;
+}
+
+.lessons li{
+    padding:15px;
+    margin-bottom:12px;
+    border-radius:8px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.lessons li:hover{
+    background:#2563eb;
+    color:white;
+}
+
+/* Main Content */
+
+.lesson-content{
+    padding:50px;
+}
+
+.lesson-content h1{
+    margin-bottom:20px;
+    color:#0f172a;
+}
+
+.lesson-content h2{
+    margin:30px 0 15px;
+}
+
+.lesson-content p{
+    line-height:1.8;
+    color:#555;
+}
+
+/* Video */
+
+video{
+    width:100%;
+    border-radius:12px;
+    margin:25px 0;
+    background:#000;
+}
+
+/* Download Button */
+
+.lesson-content a{
+    display:inline-block;
+    margin-top:20px;
+    text-decoration:none;
+    color:white;
+    background:#2563eb;
+    padding:12px 20px;
+    border-radius:8px;
+    transition:.3s;
+}
+
+.lesson-content a:hover{
+    background:#1d4ed8;
+}
+
+/* Complete Button */
+
+.lesson-content button{
+    margin-top:30px;
+    padding:15px 30px;
+    border:none;
+    border-radius:8px;
+    background:#16a34a;
+    color:white;
+    font-size:16px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.lesson-content button:hover{
+    background:#15803d;
+}
+
+/* Code Example */
+
+.code-box{
+    background:#0f172a;
+    color:#38bdf8;
+    padding:20px;
+    border-radius:10px;
+    margin:25px 0;
+    overflow-x:auto;
+    font-family:monospace;
+}
+
+/* Quiz Card */
+
+.quiz{
+    margin-top:40px;
+    background:white;
+    padding:30px;
+    border-radius:12px;
+    box-shadow:0 8px 20px rgba(0,0,0,.08);
+}
+
+.quiz h2{
+    margin-bottom:20px;
+}
+
+.quiz button{
+    background:#2563eb;
+}
+
+.quiz button:hover{
+    background:#1d4ed8;
+}
+
+/* Responsive */
+
+@media(max-width:900px){
+
+.course-layout{
+    grid-template-columns:1fr;
+}
+
+.lessons{
+    position:relative;
+    top:0;
+    height:auto;
+    border-right:none;
+    border-bottom:1px solid #ddd;
+}
+
+.course-header{
+    flex-direction:column;
+    gap:15px;
+    text-align:center;
+}
+
+.lesson-content{
+    padding:25px;
+}
+
+}
