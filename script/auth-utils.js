@@ -3,8 +3,13 @@ const STORAGE_KEYS = {
   currentUser: 'dlg_current_user'
 };
 
+function getStorage() {
+  return typeof window !== 'undefined' && window.localStorage ? window.localStorage : global.localStorage;
+}
+
 function readUsers() {
-  const raw = localStorage.getItem(STORAGE_KEYS.users);
+  const storage = getStorage();
+  const raw = storage.getItem(STORAGE_KEYS.users);
   if (!raw) return [];
   try {
     return JSON.parse(raw);
@@ -14,7 +19,7 @@ function readUsers() {
 }
 
 function writeUsers(users) {
-  localStorage.setItem(STORAGE_KEYS.users, JSON.stringify(users));
+  getStorage().setItem(STORAGE_KEYS.users, JSON.stringify(users));
 }
 
 function registerUser({ fullName, email, password }) {
@@ -34,7 +39,7 @@ function registerUser({ fullName, email, password }) {
 
   users.push(user);
   writeUsers(users);
-  localStorage.setItem(STORAGE_KEYS.currentUser, JSON.stringify(user));
+  getStorage().setItem(STORAGE_KEYS.currentUser, JSON.stringify(user));
 
   return { success: true, user };
 }
@@ -52,7 +57,8 @@ function loginUser({ email, password }) {
 }
 
 function getCurrentUser() {
-  const raw = localStorage.getItem(STORAGE_KEYS.currentUser);
+  const storage = getStorage();
+  const raw = storage.getItem(STORAGE_KEYS.currentUser);
   if (!raw) return null;
   try {
     return JSON.parse(raw);
@@ -62,13 +68,25 @@ function getCurrentUser() {
 }
 
 function clearSession() {
-  localStorage.removeItem(STORAGE_KEYS.currentUser);
-  localStorage.removeItem(STORAGE_KEYS.users);
+  const storage = getStorage();
+  storage.removeItem(STORAGE_KEYS.currentUser);
+  storage.removeItem(STORAGE_KEYS.users);
 }
 
-module.exports = {
-  registerUser,
-  loginUser,
-  getCurrentUser,
-  clearSession
-};
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = {
+    registerUser,
+    loginUser,
+    getCurrentUser,
+    clearSession
+  };
+}
+
+if (typeof window !== 'undefined') {
+  window.authUtils = {
+    registerUser,
+    loginUser,
+    getCurrentUser,
+    clearSession
+  };
+}

@@ -74,6 +74,12 @@ p{
     text-align:center;
 }
 
+.auth-message{
+    margin-top:12px;
+    font-size:14px;
+    min-height:20px;
+}
+
 a{
     color:#2563eb;
     text-decoration:none;
