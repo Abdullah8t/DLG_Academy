@@ -1,9 +1,14 @@
 const form = document.getElementById('registerForm');
 const message = document.getElementById('authMessage');
 
-const authUtils = typeof window !== 'undefined' && window.authUtils ? window.authUtils : require('./auth-utils');
+const authUtils = typeof window !== 'undefined' && window.authUtils
+    ? window.authUtils
+    : (typeof require === 'function' ? require('./auth-utils') : null);
 
-if (authUtils.getCurrentUser()) {
+if (!authUtils) {
+    message.textContent = 'Authentication is unavailable right now.';
+    message.style.color = '#dc2626';
+} else if (authUtils.getCurrentUser()) {
     window.location.href = 'dashboard.html';
 }
 
